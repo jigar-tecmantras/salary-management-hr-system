@@ -1,20 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { runPayroll, fetchPayrollRecords } from '../api/api';
-import { useAuth } from '../context/AuthContext';
 import './PayrollPage.css';
 
 function PayrollPage() {
-  const { token } = useAuth();
   const [form, setForm] = useState({ year: new Date().getFullYear(), month: new Date().getMonth() + 1 });
   const [records, setRecords] = useState([]);
   const [processing, setProcessing] = useState(false);
   const [message, setMessage] = useState('');
 
-  const loadRecords = () => {
-    fetchPayrollRecords(token)
+  useEffect(() => {
+    fetchPayrollRecords()
       .then(setRecords)
       .catch(() => setRecords([]));
-  };
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,7 +20,7 @@ function PayrollPage() {
     setMessage('');
 
     try {
-      const data = await runPayroll(token, form);
+      const data = await runPayroll(form);
       setRecords(data);
       setMessage('Payroll processed successfully.');
     } catch (error) {
@@ -49,7 +47,9 @@ function PayrollPage() {
           Month
           <input name="month" type="number" value={form.month} onChange={handleChange} min="1" max="12" required />
         </label>
-        <button type="submit" disabled={processing}>{processing ? 'Processing...' : 'Run Payroll'}</button>
+        <button type="submit" disabled={processing}>
+          {processing ? 'Processing...' : 'Run Payroll'}
+        </button>
       </form>
       {message && <p>{message}</p>}
       <section className="payroll-records">

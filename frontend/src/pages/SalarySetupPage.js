@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import apiClient from '../api/axios';
+import { fetchEmployees, fetchSalaries, addSalaryComponent } from '../api/api';
 import SalaryTable from '../components/SalaryTable';
 
 const initialForm = {
@@ -17,17 +17,11 @@ const SalarySetupPage = () => {
   const [error, setError] = useState('');
 
   const loadSalaries = () => {
-    apiClient
-      .get('/salaries')
-      .then((res) => setSalaryData(res.data))
-      .catch(() => setError('Unable to fetch salary data.'));
+    fetchSalaries().then(setSalaryData).catch(() => setError('Unable to fetch salary data.'));
   };
 
   const loadEmployees = () => {
-    apiClient
-      .get('/employees')
-      .then((res) => setEmployees(res.data))
-      .catch(() => setError('Unable to fetch employees.'));
+    fetchEmployees().then(setEmployees).catch(() => setError('Unable to fetch employees.'));
   };
 
   useEffect(() => {
@@ -46,7 +40,7 @@ const SalarySetupPage = () => {
     setError('');
 
     try {
-      await apiClient.post('/salaries/components', {
+      await addSalaryComponent({
         employeeId: formValues.employeeId,
         name: formValues.name,
         componentType: formValues.componentType,

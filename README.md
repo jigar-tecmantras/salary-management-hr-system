@@ -1,7 +1,7 @@
 # Salary Management HR System
 
 ## Overview
-This repository contains a dedicated HR salary management system with a React single-page application (frontend) and an ASP.NET Core Web API (backend). The solution tracks employees, salary components, payroll processing, approvals, and reporting so HR can efficiently manage pay cycles.
+This repository contains a dedicated HR salary management system with a React single-page application (frontend) and an ASP.NET Core Web API (backend). The solution tracks employees, salary components, payroll processing, approvals, and reporting so HR can efficiently manage pay cycles from a single screen without any authentication barrier for personal use.
 
 ## Backend Setup (ASP.NET Core)
 1. Install [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download).
@@ -17,14 +17,14 @@ The API listens on the default HTTPS URL (usually `https://localhost:5001`). Swa
 3. `npm install`
 4. `npm start`
 
-The React app runs on `http://localhost:3000` by default. It talks to the backend at `https://localhost:5001/api`; adjust the proxy or the base URL if you host the API elsewhere.
+The React app runs on `http://localhost:3000` by default and calls the API at `https://localhost:5001/api`.
 
-## Default HR Access
-- **Username:** `hradmin`
-- **Password:** `Password123`
+## Usage
+- Open the React UI directly in the browser; no login prompts appear since the app is for personal use.
+- Use the dashboard, payroll processing form, approvals, and reports to manage salaries with immediate access.
 
 ## Features
-- JWT-protected API with example HR credentials
+- Open (unauthenticated) HR interface for personal productivity
 - Employee directory and salary component configuration
 - Payroll generation with gross/net calculations and component audit details
 - Approval workflow for special payroll requests

@@ -1,28 +1,26 @@
 import { useEffect, useState } from 'react';
 import { fetchEmployees } from '../api/api';
-import { useAuth } from '../context/AuthContext';
 import './EmployeesPage.css';
 
 function EmployeesPage() {
-  const { token } = useAuth();
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let mounted = true;
-    fetchEmployees(token)
+    fetchEmployees()
       .then((data) => {
         if (mounted) {
           setEmployees(data);
         }
       })
-      .catch(() => {})
+      .catch(() => setEmployees([]))
       .finally(() => mounted && setLoading(false));
 
     return () => {
       mounted = false;
     };
-  }, [token]);
+  }, []);
 
   return (
     <div className="employees-page">

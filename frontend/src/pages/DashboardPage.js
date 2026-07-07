@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import apiClient from '../api/axios';
+import { fetchReports } from '../api/api';
+import './DashboardPage.css';
 
 const formatCurrency = (value) =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value ?? 0);
@@ -7,14 +8,11 @@ const formatCurrency = (value) =>
 const DashboardPage = () => {
   const [summary, setSummary] = useState(null);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    apiClient
-      .get('/reports/summary')
-      .then((res) => setSummary(res.data))
-      .catch(() => setError('Unable to load dashboard summary.'))
-      .finally(() => setLoading(false));
+    fetchReports()
+      .then(setSummary)
+      .catch(() => setError('Unable to load dashboard summary.'));
   }, []);
 
   return (
@@ -27,22 +25,21 @@ const DashboardPage = () => {
       <div className="dashboard-grid">
         <div className="card">
           <span>Total Payroll</span>
-          <strong>{formatCurrency(summary?.totalPayroll)}</strong>
+          <strong>{formatCurrency(summary?.TotalPayroll)}</strong>
         </div>
         <div className="card">
           <span>Average Base Salary</span>
-          <strong>{formatCurrency(summary?.averageBaseSalary)}</strong>
+          <strong>{formatCurrency(summary?.AverageBaseSalary)}</strong>
         </div>
         <div className="card">
           <span>Pending Approvals</span>
-          <strong>{summary?.pendingApprovals ?? 0}</strong>
+          <strong>{summary?.PendingApprovals ?? 0}</strong>
         </div>
         <div className="card">
           <span>Last Processed Period</span>
-          <strong>{summary?.lastPayrollPeriod ?? 'Not processed'}</strong>
+          <strong>{summary?.LastPayrollPeriod ?? 'Not processed'}</strong>
         </div>
       </div>
-      {loading && <p>Loading payroll insights...</p>}
     </section>
   );
 };

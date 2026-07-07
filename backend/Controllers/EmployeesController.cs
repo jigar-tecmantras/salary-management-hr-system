@@ -1,11 +1,9 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SalaryManagement.API.Data;
 using SalaryManagement.API.Models;
 
 namespace SalaryManagement.API.Controllers;
 
-[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class EmployeesController : ControllerBase

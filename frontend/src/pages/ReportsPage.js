@@ -1,41 +1,46 @@
 import { useEffect, useState } from 'react';
 import { fetchReports } from '../api/api';
-import { useAuth } from '../context/AuthContext';
 import './ReportsPage.css';
 
-function ReportsPage() {
-  const { token } = useAuth();
+const ReportsPage = () => {
   const [summary, setSummary] = useState(null);
 
   useEffect(() => {
-    fetchReports(token)
+    fetchReports()
       .then(setSummary)
       .catch(() => setSummary(null));
-  }, [token]);
+  }, []);
 
   return (
-    <div className="reports-page">
-      <h2>Reports & Alerts</h2>
+    <section>
+      <header className="page-header">
+        <h2>Reports & Alerts</h2>
+        <p>High-level payroll and approval analytics.</p>
+      </header>
       {summary ? (
-        <div className="reports-card">
-          <p>
-            <span>Total Net Payroll</span>
+        <div className="card-grid">
+          <div className="info-card">
+            <span>Total Payroll</span>
             <strong>${summary.TotalPayroll.toFixed(2)}</strong>
-          </p>
-          <p>
+          </div>
+          <div className="info-card">
+            <span>Average Base Salary</span>
+            <strong>${summary.AverageBaseSalary.toFixed(2)}</strong>
+          </div>
+          <div className="info-card">
             <span>Pending Approvals</span>
             <strong>{summary.PendingApprovals}</strong>
-          </p>
-          <p>
+          </div>
+          <div className="info-card">
             <span>Last Processed Period</span>
             <strong>{summary.LastPayrollPeriod}</strong>
-          </p>
+          </div>
         </div>
       ) : (
         <p>Unable to load reports.</p>
       )}
-    </div>
+    </section>
   );
-}
+};
 
 export default ReportsPage;

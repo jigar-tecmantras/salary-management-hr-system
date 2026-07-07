@@ -1,28 +1,26 @@
 import { useEffect, useState } from 'react';
 import { fetchSalaries } from '../api/api';
-import { useAuth } from '../context/AuthContext';
 import './SalariesPage.css';
 
 function SalariesPage() {
-  const { token } = useAuth();
   const [salaries, setSalaries] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
-    fetchSalaries(token)
+    fetchSalaries()
       .then((data) => {
         if (active) {
           setSalaries(data);
         }
       })
-      .catch(() => {})
+      .catch(() => setSalaries([]))
       .finally(() => active && setLoading(false));
 
     return () => {
       active = false;
     };
-  }, [token]);
+  }, []);
 
   return (
     <div className="salaries-page">
