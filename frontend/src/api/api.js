@@ -15,3 +15,4 @@ export const fetchApprovals = () => apiClient.get('/approvals').then((res) => re
 export const createApproval = (payload) => apiClient.post('/approvals', payload).then((res) => res.data);
 export const updateApproval = (id, status) => apiClient.put(`/approvals/${id}`, { status }).then((res) => res.data);
 export const fetchReports = () => apiClient.get('/reports/summary').then((res) => res.data);
+export const fetchDashboard = () => apiClient.get('/reports/dashboard').then((res) => res.data);

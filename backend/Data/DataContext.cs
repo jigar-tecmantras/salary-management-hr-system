@@ -128,6 +128,9 @@ public class DataContext
             Status = ApprovalStatus.Pending,
             RequestedOn = DateTime.UtcNow.AddDays(-2)
         });
+
+        var now = DateTime.UtcNow;
+        ProcessPayroll(now.Year, now.Month);
     }
 
     public void AddEmployee(Employee employee) => _employees.Add(employee);
