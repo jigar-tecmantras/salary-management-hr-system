@@ -1,0 +1,39 @@
+.payroll-form {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.payroll-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.payroll-form input {
+  padding: 0.55rem;
+  border-radius: 0.4rem;
+  border: 1px solid #cbd5f5;
+}
+
+.payroll-form button {
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 0.45rem;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.payroll-records table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+.payroll-records th,
+.payroll-records td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}

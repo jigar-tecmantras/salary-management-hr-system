@@ -1,0 +1,17 @@
+.reports-card {
+  border: 1px solid #e5e7eb;
+  padding: 1.2rem;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.reports-card span {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.reports-card strong {
+  font-size: 1.4rem;
+}

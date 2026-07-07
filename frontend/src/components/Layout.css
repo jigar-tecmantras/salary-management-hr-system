@@ -1,0 +1,59 @@
+.app-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 1rem;
+}
+
+.sidebar a {
+  color: #e5e7eb;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.35rem;
+  text-decoration: none;
+}
+
+.sidebar a.active,
+.sidebar a:hover {
+  background: #3f4d65;
+}
+
+.logout-button {
+  margin-top: auto;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 0.35rem;
+  background: #ef4444;
+  color: white;
+  cursor: pointer;
+}
+
+.page-content {
+  background: #f3f4f6;
+  padding: 1.5rem;
+}
+
+.top-bar {
+  margin-bottom: 1rem;
+}
+
+main {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+}
